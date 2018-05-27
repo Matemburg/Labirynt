@@ -90,11 +90,17 @@ namespace Labirynt
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Labirynt1.szukaj(2, 0);
-            MessageBox.Show(Labirynt1.Scierzka.Count.ToString());
-            for (int j = 0; j < Labirynt1.Scierzka.Count - 2; j++)
+            Labirynt1.Scierzka2.Add(new List<Point>());
+            Labirynt1.szukaj_2(0, 0,0);
+            Labirynt1.sortuj();
+            int l = 0;
+            MessageBox.Show("Liczba scierzeka do wyjscia " + Labirynt1.Scierzka2.Count.ToString());
+            MessageBox.Show(Labirynt1.Scierzka2[l].Count.ToString());
+            
+
+            for (int j = 0; j < Labirynt1.Scierzka2[l].Count -2; j++)
             {
-                g.DrawLine(red, (Labirynt1.Scierzka[j].Y * 500 / Labirynt1.Pola[0].Length+ 250/Labirynt1.Pola[0].Length), Labirynt1.Scierzka[j].X * 500 / Labirynt1.Pola.Count + (250/Labirynt1.Pola.Count), Labirynt1.Scierzka[j + 1].Y * 500 / Labirynt1.Pola[0].Length + 250/Labirynt1.Pola[0].Length, Labirynt1.Scierzka[j + 1].X * 500 / Labirynt1.Pola.Count + (250/Labirynt1.Pola.Count));
+              g.DrawLine(red, (Labirynt1.Scierzka2[l][j].X * 500 / Labirynt1.Pola[0].Length+ 250/Labirynt1.Pola[0].Length), Labirynt1.Scierzka2[l][j].Y * 500 / Labirynt1.Pola.Count + (250/Labirynt1.Pola.Count), Labirynt1.Scierzka2[l][j + 1].X * 500 / Labirynt1.Pola[0].Length + 250/Labirynt1.Pola[0].Length, Labirynt1.Scierzka2[l][j + 1].Y * 500 / Labirynt1.Pola.Count + (250/Labirynt1.Pola.Count));
             }
             pictureBox1.Refresh();
 

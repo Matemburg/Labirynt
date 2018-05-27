@@ -7,3 +7,4 @@ c:\users\shepard\documents\visual studio 2015\Projects\WindowsFormsApplication5\
 c:\users\shepard\documents\visual studio 2015\Projects\WindowsFormsApplication5\WindowsFormsApplication5\bin\Debug\Labirynt.pdb
 c:\users\shepard\documents\visual studio 2015\Projects\WindowsFormsApplication5\WindowsFormsApplication5\obj\Debug\Labirynt.exe
 c:\users\shepard\documents\visual studio 2015\Projects\WindowsFormsApplication5\WindowsFormsApplication5\obj\Debug\Labirynt.pdb
+C:\Users\Shepard\Documents\Visual Studio 2015\Projects\WindowsFormsApplication5\WindowsFormsApplication5\obj\Debug\Labirynt.csproj.CoreCompileInputs.cache
