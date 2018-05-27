@@ -16,18 +16,21 @@ namespace Labirynt
         public List<string> Pola;
         public List<Point> Scierzka;
         public List<List<Point>> Scierzka2;
-        private int u = 0;
+      //  private int u = 0;
 
 
         public Plansza()
         {
-            Pola = new List<string>();
+            
             Scierzka = new List<Point>();
             Scierzka2 = new List<List<Point>>();
         }
 
         public void wczytaj(string lokalizacja)
         {
+            Pola = new List<string>();
+            Scierzka2 = new List<List<Point>>();
+
             using (StreamReader sr = File.OpenText(lokalizacja))
             {
                 string s = "";
@@ -88,6 +91,24 @@ namespace Labirynt
                 return false;
 
             }
+        }
+
+        public void szukaj_poczatek()
+        {
+
+            for (int i=0;i<Pola.Count;i++)
+            {
+                for (int j = 0; j < Pola[0].Length; j++)
+                {
+                    if (Pola[i][j] == 'S')
+                    {
+                        if (Scierzka2.Count > 1)
+                            Scierzka2.Add(new List<Point>());
+                     szukaj_2(j, i, Scierzka2.Count - 1);
+                    }
+                }
+            }
+
         }
 
         public void szukaj_2(int x, int y, int nr)

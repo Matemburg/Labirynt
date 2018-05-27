@@ -19,6 +19,7 @@ namespace Labirynt
         Pen gold = new Pen(Color.Gold, 7);
         Pen red = new Pen(Color.Red, 2);
         Pen brown = new Pen(Color.Brown, 7);
+        int l = 0;
         public Form1()
         {
             InitializeComponent();
@@ -29,6 +30,9 @@ namespace Labirynt
             // pictureBox1 = new PictureBox();
             pictureBox1.Image = new Bitmap(500, 500);
             g = Graphics.FromImage(pictureBox1.Image);
+            label1.Text = "";
+            label4.Text = "";
+            label6.Text = "";
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -38,6 +42,7 @@ namespace Labirynt
 
         private void button1_Click(object sender, EventArgs e)
         {
+            l = 0;
             g.Clear(Color.White);
             Stream myStream = null;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -91,19 +96,62 @@ namespace Labirynt
         private void button2_Click(object sender, EventArgs e)
         {
             Labirynt1.Scierzka2.Add(new List<Point>());
-            Labirynt1.szukaj_2(0, 0,0);
+            Labirynt1.szukaj_poczatek();
             Labirynt1.sortuj();
-            int l = 0;
+
             MessageBox.Show("Liczba scierzeka do wyjscia " + Labirynt1.Scierzka2.Count.ToString());
-            MessageBox.Show(Labirynt1.Scierzka2[l].Count.ToString());
-            
-
-            for (int j = 0; j < Labirynt1.Scierzka2[l].Count -2; j++)
+            for (int j = 0; j < Labirynt1.Scierzka2[l].Count - 2; j++)
             {
-              g.DrawLine(red, (Labirynt1.Scierzka2[l][j].X * 500 / Labirynt1.Pola[0].Length+ 250/Labirynt1.Pola[0].Length), Labirynt1.Scierzka2[l][j].Y * 500 / Labirynt1.Pola.Count + (250/Labirynt1.Pola.Count), Labirynt1.Scierzka2[l][j + 1].X * 500 / Labirynt1.Pola[0].Length + 250/Labirynt1.Pola[0].Length, Labirynt1.Scierzka2[l][j + 1].Y * 500 / Labirynt1.Pola.Count + (250/Labirynt1.Pola.Count));
+                g.DrawLine(red, (Labirynt1.Scierzka2[l][j].X * 500 / Labirynt1.Pola[0].Length + 250 / Labirynt1.Pola[0].Length), Labirynt1.Scierzka2[l][j].Y * 500 / Labirynt1.Pola.Count + (250 / Labirynt1.Pola.Count), Labirynt1.Scierzka2[l][j + 1].X * 500 / Labirynt1.Pola[0].Length + 250 / Labirynt1.Pola[0].Length, Labirynt1.Scierzka2[l][j + 1].Y * 500 / Labirynt1.Pola.Count + (250 / Labirynt1.Pola.Count));
             }
+            g.DrawLine(red, (Labirynt1.Scierzka2[l][Labirynt1.Scierzka2[l].Count - 2].X * 500 / Labirynt1.Pola[0].Length + 250 / Labirynt1.Pola[0].Length), Labirynt1.Scierzka2[l][Labirynt1.Scierzka2[l].Count - 2].Y * 500 / Labirynt1.Pola.Count + (250 / Labirynt1.Pola.Count), Labirynt1.Scierzka2[l][Labirynt1.Scierzka2[l].Count - 1].X * 500 / Labirynt1.Pola[0].Length + 250 / Labirynt1.Pola[0].Length, Labirynt1.Scierzka2[l][Labirynt1.Scierzka2[l].Count - 1].Y * 500 / Labirynt1.Pola.Count + (250 / Labirynt1.Pola.Count));
             pictureBox1.Refresh();
+            label1.Text = "1";
+            label4.Text = Labirynt1.Scierzka2.Count().ToString();
+            label6.Text = Labirynt1.Scierzka2[l].Count().ToString();
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            g.Clear(Color.White);
+            if (l < Labirynt1.Scierzka2.Count-1)
+                l++;
+            else
+                l = 0;
+
+            for (int i = 0; i < Labirynt1.Pola[0].Length; i++)
+            {
+                g.DrawLine(black, 500 - (i * 500 / Labirynt1.Pola[0].Length), 0, 500 - (i * 500 / Labirynt1.Pola[0].Length), 500);
+            }
+            for (int i = 0; i < Labirynt1.Pola.Count; i++)
+            {
+                g.DrawLine(black, 0, 500 - (i * 500 / Labirynt1.Pola.Count), 500, 500 - (i * 500 / Labirynt1.Pola.Count));
+            }
+
+            for (int i = 0; i < Labirynt1.Pola[0].Length; i++)
+            {
+                for (int j = 0; j < Labirynt1.Pola.Count; j++)
+                {
+                    if (Labirynt1.Pola[j][i] == 'X')
+                        g.DrawEllipse(black, (i * 500 / Labirynt1.Pola[0].Length), (j * 500 / Labirynt1.Pola.Count), 500 / Labirynt1.Pola[0].Length, 500 / Labirynt1.Pola.Count);
+                    if (Labirynt1.Pola[j][i] == 'S')
+                        g.DrawEllipse(gold, (i * 500 / Labirynt1.Pola[0].Length), (j * 500 / Labirynt1.Pola.Count), 500 / Labirynt1.Pola[0].Length, 500 / Labirynt1.Pola.Count);
+                    if (Labirynt1.Pola[j][i] == 'W')
+                        g.DrawEllipse(brown, (i * 500 / Labirynt1.Pola[0].Length), (j * 500 / Labirynt1.Pola.Count), 500 / Labirynt1.Pola[0].Length, 500 / Labirynt1.Pola.Count);
+
+                }
+
+                for (int j = 0; j < Labirynt1.Scierzka2[l].Count - 2; j++)
+                {
+                    g.DrawLine(red, (Labirynt1.Scierzka2[l][j].X * 500 / Labirynt1.Pola[0].Length + 250 / Labirynt1.Pola[0].Length), Labirynt1.Scierzka2[l][j].Y * 500 / Labirynt1.Pola.Count + (250 / Labirynt1.Pola.Count), Labirynt1.Scierzka2[l][j + 1].X * 500 / Labirynt1.Pola[0].Length + 250 / Labirynt1.Pola[0].Length, Labirynt1.Scierzka2[l][j + 1].Y * 500 / Labirynt1.Pola.Count + (250 / Labirynt1.Pola.Count));
+                }
+                g.DrawLine(red, (Labirynt1.Scierzka2[l][Labirynt1.Scierzka2[l].Count - 2].X * 500 / Labirynt1.Pola[0].Length + 250 / Labirynt1.Pola[0].Length), Labirynt1.Scierzka2[l][Labirynt1.Scierzka2[l].Count - 2].Y * 500 / Labirynt1.Pola.Count + (250 / Labirynt1.Pola.Count), Labirynt1.Scierzka2[l][Labirynt1.Scierzka2[l].Count - 1].X * 500 / Labirynt1.Pola[0].Length + 250 / Labirynt1.Pola[0].Length, Labirynt1.Scierzka2[l][Labirynt1.Scierzka2[l].Count-1].Y * 500 / Labirynt1.Pola.Count + (250 / Labirynt1.Pola.Count));
+                pictureBox1.Refresh();
+                label1.Text = (l + 1).ToString();
+                label6.Text = Labirynt1.Scierzka2[l].Count().ToString();
+
+            }
         }
     }
 }
