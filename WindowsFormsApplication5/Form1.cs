@@ -33,6 +33,8 @@ namespace Labirynt
             label1.Text = "";
             label4.Text = "";
             label6.Text = "";
+            label10.Text = "";
+            label9.Text = "";
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -109,7 +111,16 @@ namespace Labirynt
             label1.Text = "1";
             label4.Text = Labirynt1.Scierzka2.Count().ToString();
             label6.Text = Labirynt1.Scierzka2[l].Count().ToString();
-
+            int mini = Labirynt1.Scierzka2[0].Count;
+            int mininr = 0;
+            for (int j = 1; j < Labirynt1.Scierzka2.Count; j++)
+            {
+                if (mini > Labirynt1.Scierzka2[j].Count) {
+                    mini = Labirynt1.Scierzka2[j].Count;
+                    mininr = j;
+                } }
+            label10.Text = mini.ToString();
+            label9.Text = (mininr+1).ToString();
         }
 
         private void button3_Click(object sender, EventArgs e)
