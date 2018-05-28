@@ -44,6 +44,7 @@ namespace Labirynt
 
         private void button1_Click(object sender, EventArgs e)
         {
+            button3.Visible = false;
             l = 0;
             g.Clear(Color.White);
             Stream myStream = null;
@@ -92,7 +93,7 @@ namespace Labirynt
             }
 
             pictureBox1.Refresh();
-
+            button2.Visible = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -121,6 +122,7 @@ namespace Labirynt
                 } }
             label10.Text = mini.ToString();
             label9.Text = (mininr+1).ToString();
+            button3.Visible = true;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -163,6 +165,21 @@ namespace Labirynt
                 label6.Text = Labirynt1.Scierzka2[l].Count().ToString();
 
             }
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
